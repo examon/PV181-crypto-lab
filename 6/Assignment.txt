@@ -1,0 +1,28 @@
+Write two simple programs using OpenSSL library on Linux.
+
+1) Create a simple program that encrypts/decrypts a file with AES-128 in CBC
+mode (using OpenSSL library) with
+  fixed key: 00112233445566778899aabbccddeeff (in hexa) and
+  fixed IV:  00000000000000000000000000000008 (in hexa).
+
+Hints:
+ - file name can be hardcoded (you can use memory buffer holding the whole file content)
+ - to access file you can use OpenSSL BIO functions or any other functions
+
+Deadline: November 8, 2017, maximum is 5 points.
+
+
+2) Create a simple program that generates 4096 bit RSA key with public exponent 17
+and prints private and public output to the screen.
+
+Hints:
+ - Use RSA_generate_key_ex() function.
+ - Use PEM_read/write_PrivateKey or BIO based PEM_read/write_bio_PrivateKey
+   (the same for public key).
+
+Deadline: November 8, 2017, maximum is 5 points.
+
+Your submitted archive should contain *two* C programs above.
+
+The source code must be compilable on the provided virtual machine (Linux Fedora)
+or on aisa server.

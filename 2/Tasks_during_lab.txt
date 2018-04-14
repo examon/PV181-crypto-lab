@@ -1,0 +1,22 @@
+RSA (use genrsa, rsa, rsautl for help on generation, and signing) 
+1. Generate RSA private key with e = 3 and n with 256 bits.
+
+https://terry.im/wiki/terry/Use+OpenSSL+to+generate+key+pairs.html
+
+
+2. Check whether n=p.q - use wolfram alpha. 
+3. Generate corresponding public key. 
+4. Use keys to encrypt-decrypt arbitrary message. 
+What is the maximum size of message?
+
+DSA
+1.Generate 1024 DSA parameters to DSAparams.pem.
+2.Generate DSA private and public key from DSAparams.pem.   
+3.Hash file file.txt("PV181") using md5 to file file.md5.
+4.Sign the file with DSA to sigfile.bin.
+5.Verify the signature. 
+
+
+
+
+

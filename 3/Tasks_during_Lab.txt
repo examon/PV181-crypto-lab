@@ -1,0 +1,38 @@
+Browser
+1. Find certificate of www.google.com find out which algorithms are used for hashing.
+2. Download corresponding CRL.
+3. Open CRL and check its content.
+
+# in Chrome: shift+ctrl+i
+
+================================================================================
+
+Connecting to SSL Services (s_client)
+4. Connect to www.fi.muni.cz.
+
+# https://wiki.openssl.org/index.php/Manual:S_client(1)
+openssl s_client -connect is.muni.cz:443
+
+5. Check certificate path.
+6. Connect to www.google.cz and save cert to GOOGLE.crt.
+
+openssl s_client -connect www.google.cz:443 | openssl x509 -outform PEM > google.crt
+
+================================================================================
+
+
+Format transformations (x509)
+7. Decode certificate GOOGLE.crt.
+8. Convert a certificate from PEM to DER format.
+9. Convert a certificate from DER to PEM format.
+
+
+cat google.crt | openssl x509 -outform DER > google.der
+cat google.der | openssl x509 -outform PEM > google.pem
+
+
+
+
+
+
+

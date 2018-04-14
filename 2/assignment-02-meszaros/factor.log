@@ -1,0 +1,85 @@
+10/01/17 14:55:57 v1.34.3 @ beast, 
+10/01/17 14:55:57 v1.34.3 @ beast, ****************************
+10/01/17 14:55:57 v1.34.3 @ beast, Starting factorization of 100011095352419832635475651695310703836624846329288315840098243048783360408801
+10/01/17 14:55:57 v1.34.3 @ beast, using pretesting plan: normal
+10/01/17 14:55:57 v1.34.3 @ beast, no tune info: using qs/gnfs crossover of 95 digits
+10/01/17 14:55:57 v1.34.3 @ beast, ****************************
+10/01/17 14:55:57 v1.34.3 @ beast, rho: x^2 + 3, starting 1000 iterations on C78
+10/01/17 14:55:57 v1.34.3 @ beast, rho: x^2 + 2, starting 1000 iterations on C78
+10/01/17 14:55:57 v1.34.3 @ beast, rho: x^2 + 1, starting 1000 iterations on C78
+10/01/17 14:55:57 v1.34.3 @ beast, pm1: starting B1 = 150K, B2 = gmp-ecm default on C78
+10/01/17 14:55:57 v1.34.3 @ beast, current ECM pretesting depth: 0.00
+10/01/17 14:55:57 v1.34.3 @ beast, scheduled 30 curves at B1=2000 toward target pretesting depth of 24.00
+10/01/17 14:55:57 v1.34.3 @ beast, Finished 30 curves using Lenstra ECM method on C78 input, B1=2K, B2=gmp-ecm default
+10/01/17 14:55:57 v1.34.3 @ beast, current ECM pretesting depth: 15.18
+10/01/17 14:55:57 v1.34.3 @ beast, scheduled 74 curves at B1=11000 toward target pretesting depth of 24.00
+10/01/17 14:55:59 v1.34.3 @ beast, Finished 74 curves using Lenstra ECM method on C78 input, B1=11K, B2=gmp-ecm default
+10/01/17 14:55:59 v1.34.3 @ beast, current ECM pretesting depth: 20.24
+10/01/17 14:55:59 v1.34.3 @ beast, scheduled 161 curves at B1=50000 toward target pretesting depth of 24.00
+10/01/17 14:56:10 v1.34.3 @ beast, Finished 161 curves using Lenstra ECM method on C78 input, B1=50K, B2=gmp-ecm default
+10/01/17 14:56:10 v1.34.3 @ beast, final ECM pretested depth: 24.00
+10/01/17 14:56:10 v1.34.3 @ beast, scheduler: switching to sieve method
+10/01/17 14:56:10 v1.34.3 @ beast, starting SIQS on c78: 100011095352419832635475651695310703836624846329288315840098243048783360408801
+10/01/17 14:56:10 v1.34.3 @ beast, random seeds: 1988776897, 2240419086
+10/01/17 14:56:26 v1.34.3 @ beast, 
+10/01/17 14:56:26 v1.34.3 @ beast, ****************************
+10/01/17 14:56:26 v1.34.3 @ beast, Starting factorization of 100011095352419832635475651695310703836624846329288315840098243048783360408801
+10/01/17 14:56:26 v1.34.3 @ beast, using pretesting plan: normal
+10/01/17 14:56:26 v1.34.3 @ beast, no tune info: using qs/gnfs crossover of 95 digits
+10/01/17 14:56:26 v1.34.3 @ beast, ****************************
+10/01/17 14:56:26 v1.34.3 @ beast, starting SIQS on c78: 100011095352419832635475651695310703836624846329288315840098243048783360408801
+10/01/17 14:56:26 v1.34.3 @ beast, random seeds: 3756451405, 1568824681
+10/01/17 14:56:26 v1.34.3 @ beast, ==== sieve params ====
+10/01/17 14:56:26 v1.34.3 @ beast, n = 78 digits, 256 bits
+10/01/17 14:56:26 v1.34.3 @ beast, factor base: 36160 primes (max prime = 909281)
+10/01/17 14:56:26 v1.34.3 @ beast, single large prime cutoff: 77288885 (85 * pmax)
+10/01/17 14:56:26 v1.34.3 @ beast, allocating 7 large prime slices of factor base
+10/01/17 14:56:26 v1.34.3 @ beast, buckets hold 2048 elements
+10/01/17 14:56:26 v1.34.3 @ beast, using 32k sieve core
+10/01/17 14:56:26 v1.34.3 @ beast, sieve interval: 10 blocks of size 32768
+10/01/17 14:56:26 v1.34.3 @ beast, polynomial A has ~ 10 factors
+10/01/17 14:56:26 v1.34.3 @ beast, using multiplier of 1
+10/01/17 14:56:26 v1.34.3 @ beast, using SPV correction of 21 bits, starting at offset 36
+10/01/17 14:56:26 v1.34.3 @ beast, using SSE2 for trial division and x64 sieve scanning
+10/01/17 14:56:26 v1.34.3 @ beast, using SSE4.1 enabled 32k sieve core
+10/01/17 14:56:26 v1.34.3 @ beast, using SSE2 for resieving 13-16 bit primes
+10/01/17 14:56:26 v1.34.3 @ beast, trial factoring cutoff at 87 bits
+10/01/17 14:56:26 v1.34.3 @ beast, ==== sieving started (1 thread) ====
+10/01/17 14:57:01 v1.34.3 @ beast, trial division touched 2311042 sieve locations out of 20387594240
+10/01/17 14:57:01 v1.34.3 @ beast, 36333 relations found: 19160 full + 17173 from 184239 partial, using 31109 polys (122 A polys)
+10/01/17 14:57:01 v1.34.3 @ beast, on average, sieving found 6.54 rels/poly and 5763.08 rels/sec
+10/01/17 14:57:01 v1.34.3 @ beast, trial division touched 2311042 sieve locations out of 20387594240
+10/01/17 14:57:01 v1.34.3 @ beast, ==== post processing stage (msieve-1.38) ====
+10/01/17 14:57:01 v1.34.3 @ beast, begin with 203398 relations
+10/01/17 14:57:01 v1.34.3 @ beast, reduce to 51214 relations in 2 passes
+10/01/17 14:57:01 v1.34.3 @ beast, recovered 51214 relations
+10/01/17 14:57:01 v1.34.3 @ beast, recovered 30003 polynomials
+10/01/17 14:57:01 v1.34.3 @ beast, freed 14 duplicate relations
+10/01/17 14:57:01 v1.34.3 @ beast, attempting to build 36318 cycles
+10/01/17 14:57:01 v1.34.3 @ beast, found 36318 cycles in 1 passes
+10/01/17 14:57:01 v1.34.3 @ beast, distribution of cycle lengths:
+10/01/17 14:57:01 v1.34.3 @ beast,    length 1 : 19157
+10/01/17 14:57:01 v1.34.3 @ beast,    length 2 : 17161
+10/01/17 14:57:01 v1.34.3 @ beast, largest cycle: 2 relations
+10/01/17 14:57:01 v1.34.3 @ beast, matrix is 36160 x 36318 (5.1 MB) with weight 1051463 (28.95/col)
+10/01/17 14:57:01 v1.34.3 @ beast, sparse part has weight 1051463 (28.95/col)
+10/01/17 14:57:01 v1.34.3 @ beast, filtering completed in 3 passes
+10/01/17 14:57:01 v1.34.3 @ beast, matrix is 24755 x 24819 (3.9 MB) with weight 815104 (32.84/col)
+10/01/17 14:57:01 v1.34.3 @ beast, sparse part has weight 815104 (32.84/col)
+10/01/17 14:57:01 v1.34.3 @ beast, saving the first 48 matrix rows for later
+10/01/17 14:57:01 v1.34.3 @ beast, matrix is 24707 x 24819 (3.1 MB) with weight 656541 (26.45/col)
+10/01/17 14:57:01 v1.34.3 @ beast, sparse part has weight 576070 (23.21/col)
+10/01/17 14:57:01 v1.34.3 @ beast, matrix includes 64 packed rows
+10/01/17 14:57:01 v1.34.3 @ beast, using block size 9927 for processor cache size 8192 kB
+10/01/17 14:57:01 v1.34.3 @ beast, commencing Lanczos iteration
+10/01/17 14:57:01 v1.34.3 @ beast, memory use: 2.9 MB
+10/01/17 14:57:02 v1.34.3 @ beast, lanczos halted after 392 iterations (dim = 24705)
+10/01/17 14:57:02 v1.34.3 @ beast, recovered 15 nontrivial dependencies
+10/01/17 14:57:02 v1.34.3 @ beast, prp39 = 299922437631196504877559898948419084449
+10/01/17 14:57:02 v1.34.3 @ beast, prp39 = 333456530102625287437564166572088669249
+10/01/17 14:57:02 v1.34.3 @ beast, Lanczos elapsed time = 0.7773 seconds.
+10/01/17 14:57:02 v1.34.3 @ beast, Sqrt elapsed time = 0.0224 seconds.
+10/01/17 14:57:02 v1.34.3 @ beast, SIQS elapsed time = 36.0944 seconds.
+10/01/17 14:57:02 v1.34.3 @ beast, 
+10/01/17 14:57:02 v1.34.3 @ beast, 
+10/01/17 14:57:02 v1.34.3 @ beast, Total factoring time = 36.1100 seconds

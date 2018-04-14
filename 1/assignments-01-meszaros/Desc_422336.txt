@@ -1,0 +1,48 @@
+1. Generate random key K and save it to K.bin. [1 point]
+
+openssl rand 128 -hex > K.bin
+
+================================================================================
+
+2. Generate random key K2 from password = UCO_XXXXXX and salt = "00000000"
+(XXXXX stands for your UCO) and save it to K2.bin.[2 points]
+
+# vygenerujeme 128bit kluc do K2.bin
+openssl enc -aes-128-cbc -k UCO_422336 -S 00000000 -P -out K2.bin | grep key | cut -d = -f 2 > K2.bin
+
+================================================================================
+
+3. Encrypt file M.txt with message "this is my UCO_XXXXXX" using K to encryptedM.bin.
+Use CBC mode of AES-128. As IV (string) use 0xfff... (should be of apropriate size). [2 points]
+
+# encryption (iv je 128bit (rovnaky ako aes-128-cbc block size)
+openssl enc -aes-128-cbc -in M.txt -out encryptedM.bin -kfile K.bin -iv ffffffffffffffffffffffffffffffff
+
+# decryption
+openssl enc -d -aes-128-cbc -in encryptedM.bin -kfile K.bin -iv ffffffffffffffffffffffffffffffff
+
+================================================================================
+
+4. Compute MAC of the encryptedM.bin using arbitry algorithm and key K2 (string). [2 points]
+
+# pouzijeme hmac z openssl a kluc z K2.bin
+openssl dgst -mac hmac -macopt key:"`cat K2.bin`" encryptedM.bin
+
+================================================================================
+
+5. Create new file1.bin,file2.bin with the same SHA1 hash.[3]
+Hint: SHA1 design is Merkle-Damgård construction.
+
+Pozrel som si prezentaciu Elie Bursztein kde bolo vysvetlene ako kolizia vznika.
+Elie ukazal tool sha1collider, ktory zostavi par pdf suborov z paru obrazkov.
+Spravil som 2 obrazky, konvertoval na pdf a pouzil sha1collider. (vysledok je v file1/2.pdf)
+
+https://www.youtube.com/watch?v=NbHL0SYlrSQ
+https://github.com/nneonneo/sha1collider
+
+================================================================================
+
+Describe entire process, commands you used in Desc_xxxx.txt (xxxx stands
+for your UCO). Archive all required files (so it can be opened in Windows
+10 without installation of additional SW) and submit it as a single file into
+IS.

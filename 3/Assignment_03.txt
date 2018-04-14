@@ -1,0 +1,10 @@
+1. Generate RSA-2048 key for root CA.  [2]
+2. Generate sub-ordinate CA signed by CA. [2]
+3. Write simple program in C programming language and generate random key K.bin for AES 128. [3]
+4. Encrypt file file.txt "yourUCO" using K.bin to encrypted.bin using arbitrary symmetric cipher.
+   Use my certificate SYS.crt and encrypt key K to encryptedK.bin for me (I should be able to decrypt file). [3]
+
+Describe entire process, commands you used in Desc_xxxx.txt (xxxx stands
+for your UCO). Archive all required files (so it can be opened in Windows 
+10 without installation of additional SW) and submit it as a single file into
+IS.  

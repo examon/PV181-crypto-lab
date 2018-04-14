@@ -1,0 +1,67 @@
+package pv181.jca.protobuf.entities;
+option java_outer_classname = "Messages";
+option optimize_for = SPEED;
+
+// Demo message - for demonstration purposes.
+// ProtobufDemo.java shows how to use this message
+// For more information please refer to: 
+// https://developers.google.com/protocol-buffers/docs/proto
+message DemoMessage {
+  optional int32 version = 1 [default=1];
+  optional bytes byteField = 2;
+  optional string stringField = 3;
+  optional int32 integerField = 4;
+}
+
+// Message for AES Ciphertext with initialization vector.
+message AESCiphertextMessage {
+  // Initialization vector for AES. Suitable for some cipher modes e.g., cbc.
+  optional bytes iv = 1;
+
+  // If AES key was generated using PBKDF2, here is salt specified 
+  // in order to be able to reconstruct encryption key from passphrase.
+  // Salt is a public parameter as IV.
+  optional bytes salt = 2;
+
+  // AES Ciphertext.
+  optional bytes ciphertext = 3;
+}
+
+// Assignment 01:
+// Hash message for reporting predefined hash collisions.
+message HashMessage {
+  required string uco = 1;
+  required int32 hashType = 2;
+
+  optional uint64 salt = 3;
+  required string hashInput = 4; // has to conform to format: UCO:SALT
+
+  // Outputs:
+  required bytes hash = 5; 
+  optional string hashHexEncoded = 6;
+
+  // Initialization vector for AES. Suitable for some cipher modes e.g., cbc.
+  optional bytes aesIv = 7;
+
+  // AES encryption key. 256bits long.
+  optional bytes aesKey = 8;
+
+  // AES Ciphertext, use: AES/CBC/PKCS5Padding
+  optional bytes aesCiphertext = 9;
+
+  // HMAC key.
+  optional bytes hmacKey = 10;
+  
+  // HMAC value, Mac mac = Mac.getInstance("HmacSHA1");
+  optional bytes hmac = 11;
+
+  // Generate 8192 bit RSA key-pair and write it here.
+  optional bytes privateKey = 12;
+  optional bytes publicKey = 13;
+  
+  // Signature of the digest. Use: java.security.Signature sig = java.security.Signature.getInstance("SHA1WithRSA"); 
+  optional bytes rsaSignature = 14; 
+
+  // RSA encryption of the digest. Use: Cipher.getInstance("RSA/ECB/PKCS1PADDING");
+  optional bytes rsaCiphertext = 15;
+}

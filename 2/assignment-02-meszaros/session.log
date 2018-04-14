@@ -1,0 +1,22 @@
+10/01/17 14:55:57 v1.34.3 @ beast, System/Build Info: 
+Using GMP-ECM 7.0.4, Powered by GMP 6.1.1
+cached 78498 primes. pmax = 999983
+detected Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz
+detected L1 = 32768 bytes, L2 = 8388608 bytes, CL = 64 bytes
+measured cpu frequency ~= 4008.063620
+using 20 random witnesses for Rabin-Miller PRP checks
+
+10/01/17 14:55:57 v1.34.3 @ beast, New random seeds: 2896302221, 4263564842
+
+10/01/17 14:56:26 v1.34.3 @ beast, System/Build Info: 
+Using GMP-ECM 7.0.4, Powered by GMP 6.1.1
+cached 78498 primes. pmax = 999983
+detected Intel(R) Core(TM) i7-6700K CPU @ 4.00GHz
+detected L1 = 32768 bytes, L2 = 8388608 bytes, CL = 64 bytes
+measured cpu frequency ~= 4008.062010
+using 20 random witnesses for Rabin-Miller PRP checks
+
+10/01/17 14:56:26 v1.34.3 @ beast, New random seeds: 3756451405, 1568824681
+
+10/01/17 14:56:26 v1.34.3 @ beast, Processing expression: factor(0x00dd1c46242e8ba44783579e10b749bdcf05e2c99dc15f44d98626b49f9791bce1)
+

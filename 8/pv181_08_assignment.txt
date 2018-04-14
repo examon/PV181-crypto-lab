@@ -1,0 +1,50 @@
+# Homework assignment #1
+
+Hash collision generator.
+
+ - In this assignment you are supposed to create a Java application which computes a message digest of a specific form.
+ - The principle is very similar to the Bitcoin hash computation.
+ - Use SHA-256 hash function.
+ - Let denote UCO your university number identifier. Suppose mine is 987654.
+ - Task is to find a string of a form "UCO:number", where "number" is an arbitrary number in a decimal representation, such that byte[] digest = md.digest("UCO:number".toBytes()); hashes to a byte array for which holds:
+ -  - digest[0] == (byte)0x98, thus first byte of the digest is 1st part of your UCO.
+ -  - digest[1] == (byte)0x76, thus second byte of the digest is 2nd part of your UCO.
+ -  - digest[2] == (byte)0x54, thus third byte of the digest is 3rd part of your UCO.
+ -  - (digest[3] & ((byte)0xF0)) == 0, thus fourth byte has upper half byte zero.
+ -  - BONUS: digest[3] == 0. For each additional full zero byte you receive 0.5 points up to 1 extra points.
+ -  - BONUS: Write your reasoning to uco_reasoning.txt to explain why the given task worked (i.e., such hash exists) and why it took given amount of time (mathematically, benchmark hashes per second, compare to search space and match probability). Also explain why 0x98 != (byte)0x98. 0.5 Extra point.
+
+ - For generating a string I would suggest to use BigInteger, integer with arbitrary size. Hints:
+ -  - Start with BigInteger c = BigInteger.ZERO;
+ -  - In each iteration increment counter with c = c.add(BigInteger.ONE);.
+ -  - Use String.format("987654:%d", c.toString); to generate a string that you will hash. Use you UCO, not 987654!
+ -  - Don't forget to reset message digest internal state in each iteration
+ -  - Your result has to be reproducible! So when you manage to find a given number, verify your approach by hashing the particular text you've generated separately. For example use provided verify() method.
+
+ - Computing a hash of a given value takes some time so better don't leave this assignment to the last day.
+ - Furthermore, in order to practice JCA/JCE the are the following tasks prepared for you:
+ -  - You now have digest byte array that contains hash you have produced.
+ -  - In the source HashCollisions.java you can find prepared code skeletons for required tasks.
+ -  - 1. encrypt digest with a random AES key and IV, AES mode: AES/CBC/PKCS5Padding. Store IV, Key, AES ciphertext to the protocol buffer message (demonstrated in HashCollisions.java), so we are able to verify your computation.
+ -  - 2. encrypt digest with a random RSA key. RSA mode: RSA/ECB/PKCS1PADDING. In the file I have prepared a RSA key pair generation for you. Both private and public key are stored to the message for you. You have to store RSA ciphertext to the message so we are able to verify your result.
+ -  - 3. sign digest with RSA. RSA signature mode: SHA1WithRSA. Use same key as generated in a previous step. (Choose the key typically used for digital signatures). Put generated signature to the message.
+ -  - 4. HMAC digest. HMAC: HmacSHA1. You have to also generate a random 32B HMAC key and store it to the message together with generated HMAC.
+ -  - Note verify() method does not check neither of this.
+
+ - Submit your assignment using ProtocolBuffers. There is a prepared Messages.HashMessage message for you in the Netbeans Java project.
+ -  - Fill in UCO in the uco field, as a string.
+ -  - Set hashType field to 1.
+ -  - Set hashInput field to the input string you found.
+ -  - Set hash field to the final hash you computed. It has to have a format specified above.
+ -  - Build a protocol buffers message Messages.HashMessage, convert it to base64 and add as a text file to the resulting zip. Text file has to be of a name "uco_hash.txt" in the root directory of a ZIP file.
+ -  - Root structure of a zip file you submit to IS: uco_hash.txt, uco_reasoning.txt (may be empty), uco_sources directory with the Netbeans project with your solution. Has to be without errors and working. Mine would have a structure 987654_hash.txt, 987654_reasoning.txt, 987654_sources directory with Netbeans Java project.
+ -  - Cheating will be reported to the class supervisor.
+ -  - If you don't know how to do it (protocol buffers), please refer to the next section.
+
+ - Example of a valid solution for hash collision task is: 987654:476346608 for UCO: 987654. It took 35 minutes to compute on my laptop. You can verify it here.
+ 
+ 
+## Resources:
+ 
+ - https://www.fi.muni.cz/~xklinec/java/#crypto
+

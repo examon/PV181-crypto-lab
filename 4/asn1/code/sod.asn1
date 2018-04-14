@@ -1,0 +1,44 @@
+LDSSecurityObject {iso(1) identified-organization(3) icao(27) mrtd(1) security(1) ldsSecurityObject(1)}
+DEFINITIONS IMPLICIT TAGS ::=
+BEGIN
+-- Imports from RFC 3280 [PROFILE], Appendix A.1
+AlgorithmIdentifier  ::=  SEQUENCE  {
+     algorithm               OBJECT IDENTIFIER,
+     parameters              ANY DEFINED BY algorithm OPTIONAL  }
+-- Constants
+ub-DataGroups INTEGER ::= 16
+-- Object Identifiers
+id-icao OBJECT IDENTIFIER ::= {1.3.27 }
+id-icao-mrtd OBJECT IDENTIFIER ::= {id-icao 1}
+id-icao-mrtd-security OBJECT IDENTIFIER ::= {id-icao-mrtd 1}
+id-icao-ldsSecurityObject OBJECT IDENTIFIER ::= {id-icao-mrtd-security 1}
+-- LDS Security Object
+LDSSecurityObjectVersion ::= INTEGER
+DigestAlgorithmIdentifier ::= AlgorithmIdentifier
+LDSSecurityObject ::= SEQUENCE {
+version LDSSecurityObjectVersion,
+hashAlgorithm DigestAlgorithmIdentifier,
+dataGroupHashValues SEQUENCE SIZE (2..ub-DataGroups) OF
+DataGroupHash }
+DataGroupHash ::= SEQUENCE {
+dataGroupNumber DataGroupNumber,
+dataGroupHashValue OCTET STRING }
+DataGroupNumber ::= INTEGER {
+dataGroup1 (1),
+dataGroup2 (2),
+dataGroup3 (3),
+dataGroup4 (4),
+dataGroup5 (5),
+dataGroup6 (6),
+dataGroup7 (7),
+dataGroup8 (8),
+dataGroup9 (9),
+dataGroup10 (10),
+dataGroup11 (11),
+dataGroup12 (12),
+dataGroup13 (13),
+dataGroup14 (14),
+dataGroup15 (15),
+dataGroup16 (16)}
+END
+

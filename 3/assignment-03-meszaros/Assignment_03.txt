@@ -1,0 +1,54 @@
+1. Generate RSA-2048 key for root CA.  [2]
+
+# generate 2048bit private key
+openssl genrsa -out root-ca-priv.pem 2048
+
+================================================================================
+
+2. Generate sub-ordinate CA signed by CA. [2]
+
+# create root certificate
+openssl req -x509 -new -nodes -key root-ca-priv.pem -days 10000 -out root-ca-cert.pem
+
+# verify root certificate
+openssl x509 -noout -text -in root-ca-cert.pem
+
+# make subordinate ca private key and sign request
+openssl req -newkey rsa:2048 -sha256 -keyout sub-ca-priv.pem -out sub-ca-req.pem  -nodes
+
+# make subordinate ca certificate
+openssl x509 -req -in sub-ca-req.pem -sha256 -extensions v3_ca -CA root-ca-cert.pem -CAkey root-ca-priv.pem -CAcreateserial -out sub-ca-cert.pem -days 3650
+
+# verify subordinate ca certificate
+openssl x509 -noout -text -in sub-ca-cert.pem
+
+================================================================================
+
+3. Write simple program in C programming language and generate random key K.bin for AES 128. [3]
+
+# code is in the make-rand-key.c, generates random 128B key
+
+================================================================================
+
+4. Encrypt file file.txt "yourUCO" using K.bin to encrypted.bin using arbitrary symmetric cipher.
+   Use my certificate SYS.crt and encrypt key K to encryptedK.bin for me (I should be able to decrypt file). [3]
+
+# https://gist.github.com/crazybyte/4142975
+
+# encrypt file.txt using 128bit aes cbc with generated key in K.bin
+openssl enc -aes-128-cbc -in file.txt -out encryptedM.bin -kfile K.bin
+
+# decrypt using the same key
+openssl enc -d -aes-128-cbc -in encryptedM.bin -kfile K.bin
+
+# get public key from SYS.crt certificate
+openssl x509 -pubkey -noout -in SYS.crt  > SYS-pub.pem
+
+# encrypt key K.bin using public key SYS-pub.pem
+openssl rsautl -encrypt -inkey SYS-pub.pem -pubin -in K.bin -out encryptedK.bin
+
+================================================================================
+Describe entire process, commands you used in Desc_xxxx.txt (xxxx stands
+for your UCO). Archive all required files (so it can be opened in Windows
+10 without installation of additional SW) and submit it as a single file into
+IS.

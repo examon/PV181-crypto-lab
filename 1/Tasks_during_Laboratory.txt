@@ -1,0 +1,18 @@
+Hashing (use "dgst -help" for help on hashing)
+1. Check the correctness of implementation of sha1 from openssl. 
+2. How hash is changed for 1 bit change of message? Check!
+3. Compute sha1 hash of shattered-1.pdf and shattered-2.pdf. Open both files and see differences.
+4. Download the libcrypt from the page http://www.linuxfromscratch.org/blfs/view/svn/general/libgcrypt.html and check the hash.
+
+
+AES encrypt/decrypt (use "enc -help" for help on encryption)
+5. Generate random key K for AES-128 to key.bin file (command rand).
+6. Transform key K to base64. 
+7. Use key and encrypt file.txt of many 11111111.... (create) to file.ecb using ecb mode. Do you see any pattern?
+8. Print file file.ecb to base64. Do you see any pattern?
+9. Repeat 6. with cbc mode. Do you see any pattern?
+
+
+RSA  
+1. Generate RSA public key.
+2. Generate corresponding private key. 

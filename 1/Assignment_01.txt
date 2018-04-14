@@ -1,0 +1,14 @@
+1. Generate random key K and save it to K.bin. [1 point]
+2. Generate random key K2 (string) from password = UCO_XXXXXX and salt = "00000000" 
+(XXXXX stands for your UCO). Save it to file K2.bin. [2 points] 
+3. Encrypt file M.txt with message "this is my UCO_XXXXXX" using K to encryptedM.bin. 
+Use CBC mode of AES-128. As IV (string) use 0xfff... (should be of apropriate size). [2 points]
+4. Compute MAC of the encryptedM.bin using arbitry algorithm and key K2 (string). [2 points]
+ 
+5. Create new file1.bin,file2.bin with the same SHA1 hash.[3]
+Hint: SHA1 design is Merkle–Damgĺrd construction.
+
+Describe entire process, commands you used in Desc_xxxx.txt (xxxx stands
+for your UCO). Archive all required files (so it can be opened in Windows 
+10 without installation of additional SW) and submit it as a single file into
+IS.  

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+CA=ca
+CA_SUBJ='/C=CZ/ST=Utopia/L=Brno/O=Test s.r.o./OU=Test CA'
+SIGN=sub-ca
+SIGN_SUBJ='/C=CZ/ST=Utopia/L=Brno/O=Test s.r.o./OU=Test sign'
+
+PASSWORD="mypassword"
+
+# Generate RSA key for root CA
+openssl genrsa -out $CA.key 4096
+# self-sign CA
+openssl req -new -x509 -days 365 -key $CA.key -out $CA.crt -subj "$CA_SUBJ"
+
+# Generate sub-ordinate CA signed by CA
+openssl genrsa -out $SIGN.key 4096
+openssl req -new -key $SIGN.key -out $SIGN.csr -subj "$SIGN_SUBJ"
+# sign by root CA
+openssl x509 -req -days 365 -in $SIGN.csr -CA $CA.crt -CAkey $CA.key -set_serial 01 -out $SIGN.crt
+
+# Package it as PKCS12 file
+openssl pkcs12 -export -out $SIGN.p12 -inkey $SIGN.key -in $SIGN.crt -chain -CAfile $CA.crt -password "pass:$PASSWORD"
+
+for i in $(ls *.crt)
+do
+        h=$(openssl x509 -hash -noout -in $i)
+        echo "$i => $h.o"
+        ln -s $i $h.0
+done

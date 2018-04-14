@@ -1,0 +1,27 @@
+Download and study IETF RFC-6070 document
+PKCS #5: Password-Based Key Derivation Function 2 (PBKDF2) Test Vectors.
+
+Write a C Linux program (with support of OpenSSL cryptographic library) that will
+compute and verify all 6 PBKDF2-SHA1 test vectors described it the RFC document.
+
+Then run the same tests (exactly the same input parameters)
+but switch to PBKDF2-SHA256 and set output key length to 32 bytes.
+Print derived keys to the screen in hexadecimal format.
+
+Your submitted archive should contain *one* C program that checks all 6 RFC-6070
+vectors and then run all tests again with modified input.
+The output must contain at least 6 hexadecimal strings (keys) for the PBKDF2-SHA256 variant.
+The source code must be compilable on the provided virtual machine (Fedora).
+
+Deadline: November 1, 2017, maximum is 10 points.
+
+Hints:
+ - start with 3_pbkdf_openssl example
+ - copy&paste (can be written as function) or spaghetti code means at least 2 points down
+ - comment the code
+ - use CRYPTO_memcmp from OpenSSL to compare binary data
+ - output can be for example (additional info is not mandatory):
+
+# Derived key using 1. vector PBKDF2-SHA256 (P="password", S="salt", c=1, dkLen=32)
+# 12 0f b6 cf fc f8 b3 2c 43 e7 22 52 56 c4 f8 37 a8 65 48 c9 2c cc 35 48 08 05 98 7c b7 0b e1 7b
+...

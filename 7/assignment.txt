@@ -1,0 +1,18 @@
+1) create decrypt_file.cpp (similar to encrypt_file.cpp) that decrypts a given
+   file using, a given password [2 points]
+
+2) create a random session key and save it as plaintext to a file
+   using CryptGenKey, CryptExportKey (with dwBlobType = PLAINTEXTKEYBLOB)
+   [3 points]
+
+3) create a context and generate asymmetric keys for signing and key exchange,
+   using CryptAcquireContext (with dwFlags = CRYPT_NEWKEYSET) [2 points]
+
+4) use the generated public key for key exchange to encrypt the session key
+   and save it to a file, using:
+     - CryptGenKey for creating session key,
+     - CryptGetUserKey (with dwKeySpec = AT_KEYEXCHANGE) 
+     - CryptExportKey (with dwBlobType = SIMPLEBLOB)
+   [3 points]
+
+The deadline is November 15th, maximum is 10 points total.

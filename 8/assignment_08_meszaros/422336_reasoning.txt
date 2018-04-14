@@ -1,0 +1,3 @@
+Also explain why 0x98 != (byte)0x98:
+
+- 0x98 is 152 but Byte.MAX_VALUE is 127, thereofre 0x98 != (byte)0x98.

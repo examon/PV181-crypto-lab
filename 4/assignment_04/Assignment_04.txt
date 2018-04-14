@@ -1,0 +1,56 @@
+﻿Write a program (preferably in C/C++ using the asn1c tool) that reads an RSA
+private key from a file specified on command line and prints the public
+exponent (e) used in the key. Support of unencrypted RSA private key files
+is suficient (no need to handle encrypted files). [10 points]
+
+Hints:
+Work on the labak computer (ssh labak from aisa).
+You can start with the sod_sample.c file.
+Use asn1c to compile the ASN1 specification. The file might look like this,
+the missing parts (...) can be found in PKCS #1 (RFC 3447)
+
+RSAPrivateKey DEFINITIONS ::=
+BEGIN
+    RSAPrivateKey ::= ...
+
+    Version ::= ...
+
+    OtherPrimeInfos ::= ...
+
+    OtherPrimeInfo ::= ...
+
+END
+
+
+1. make asn module which defines rsa private key
+2. compile this module to *.c/*.h
+3. import compiled module (*.h) and parse data (keys) and print exponent e
+
+================================================================================
+
+# RFC 3447:  https://www.ietf.org/rfc/rfc3447.txt
+# ASN1 specification for the RSA private key is in the pk.asn1 file
+# Program that prints only public exponent is in the pk.c file
+
+# compile asn1 module into folder "code"
+mkdir code
+cp pk.asn1 code
+cd code
+asn1c -fwide-types pk.asn1
+
+# compile decoder for our module
+cc -DPDU=RSAPrivateKey -I. -o decoder *.c
+
+# test decoder on sample key
+./decoder ../sample_rsa_keys/rsa_key_2.der
+
+# compilation of pk.c so we can read only publicExponent
+rm converter-sample.c
+cp ../pk.c .
+cc -DPDU=RSAPrivateKey -I. -o pk *.c
+
+# print public exponent in hex
+./pk ../sample_rsa_keys/rsa_key_2.der
+
+# I also wrote python script that calls openssl and parses output
+python sample_rsa_keys/rsa_key_1.der

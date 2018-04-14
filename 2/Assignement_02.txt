@@ -1,0 +1,34 @@
+1. Generate RSA public (RSApub.pem) and private (RSApriv.pem) 
+key with 256 bits and e = 3. What is the problem with e=2.
+Use keys to encrypt-decrypt, sign-verify signature for M.txt (content = "0"). [3]
+
+# e=2 does not genrate big eoungh y (slide 8)
+# 256 is too small, throws an error
+
+# gen private key
+openssl genpkey -algorithm RSA -out RSApriv.pem -pkeyopt rsa_keygen_bits:512 -pkeyopt rsa_keygen_pubexp:3
+
+# gen public key from private key
+openssl rsa -in RSApriv.pem -outform PEM -pubout -out RSApub.pem
+
+# encrypt M.txt using public key
+openssl rsautl -encrypt -inkey RSApub.pem -pubin -in M.txt -out M.txt.enc
+
+# decrypt M.txt.enc using private key
+openssl rsautl -decrypt -inkey RSApriv.pem -in M.txt.enc
+
+# sign/verify
+https://www.zimuel.it/blog/sign-and-verify-a-file-using-openssl
+
+
+2. For RSApub.pem find private d,p,q using Yafu Factorizing Utility. [4]
+
+https://github.com/DarkenCode/yafu
+
+
+3. Sign and verify arbitrary document (>1MB) using ECDSA[3]. 
+
+Describe entire process, commands you used in Desc_xxxx.txt (xxxx stands
+for your UCO). Archive all required files (so it can be opened in Windows 
+10 without installation of additional SW) and submit it as a single file into
+IS.  

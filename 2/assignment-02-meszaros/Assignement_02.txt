@@ -1,0 +1,78 @@
+1. Generate RSA public (RSApub.pem) and private (RSApriv.pem)
+key with 256 bits and e = 3. What is the problem with e=2.
+Use keys to encrypt-decrypt, sign-verify signature for M.txt (content = "0"). [3]
+
+# e=2 does not genrate big eoungh y (slide 8)
+
+# generate 256bit private key with public exponent e=3
+openssl genpkey -algorithm RSA -out RSApriv.pem -pkeyopt rsa_keygen_bits:256 -pkeyopt rsa_keygen_pubexp:3
+
+# generate public key from private key
+openssl rsa -in RSApriv.pem -outform PEM -pubout -out RSApub.pem
+
+# encrypt M.txt using public key
+openssl rsautl -encrypt -inkey RSApub.pem -pubin -in M.txt -out M.txt.enc
+
+# decrypt M.txt.enc using private key
+openssl rsautl -decrypt -inkey RSApriv.pem -in M.txt.enc
+
+# make larger keys so we don't have problems with signing
+openssl genpkey -algorithm RSA -out RSApriv512.pem -pkeyopt rsa_keygen_bits:512 -pkeyopt rsa_keygen_pubexp:3
+openssl rsa -in RSApriv512.pem -outform PEM -pubout -out RSApub512.pem
+
+# sign M.txt using sha256
+openssl dgst -sha256 -sign RSApriv512.pem -out sign.sha256 M.txt
+
+# verify M.txt
+openssl dgst -sha256 -verify RSApub512.pem -signature sign.sha256 M.txt
+
+================================================================================
+
+2. For RSApub.pem find private d,p,q using Yafu Factorizing Utility. [4]
+
+# extract modulus from public key and convert to hex
+openssl rsa -inform PEM -text -noout -pubin < RSApub.pem > modulus.hex
+
+# start yafu and factor p and q
+yafu "factor("`cat modulus.hex.fixed`")"
+
+# factors:
+# P39 = 299922437631196504877559898948419084449
+# P39 = 333456530102625287437564166572088669249
+
+# we have p,q and e. We compute modular inverse and reconstruct private key
+# we will use code from the webpage below
+# https://0day.work/how-i-recovered-your-private-key-or-why-small-keys-are-bad/
+
+# now we have cracked-private.pem and we can try decrypt M.txt.enc with cracked key
+openssl rsautl -decrypt -inkey cracked-private-key.pem -in M.txt.enc
+
+================================================================================
+
+3. Sign and verify arbitrary document (>1MB) using ECDSA[3].
+
+# http://davidederosa.com/basic-blockchain-programming/elliptic-curve-digital-signatures/
+# https://stackoverflow.com/questions/22856059/openssl-ecdsa-sign-and-verify-file
+# https://wiki.openssl.org/index.php/Command_Line_Elliptic_Curve_Operations
+
+# make ec private key and save it to the ec-private.pem
+openssl ecparam -name secp256k1 -genkey -noout -out ec-private.pem
+
+# generate public ec key
+openssl ec -in ec-private.pem -pubout -out ec-public.pem
+
+# make random 2M file
+fallocate -l 2M random.bin
+
+# sign
+openssl dgst -sha1 -sign ec-private.pem random.bin  > ec-sig.bin
+
+# verify
+openssl dgst -sha1 -verify ec-public.pem -signature ec-sig.bin random.bin
+
+================================================================================
+
+Describe entire process, commands you used in Desc_xxxx.txt (xxxx stands
+for your UCO). Archive all required files (so it can be opened in Windows
+10 without installation of additional SW) and submit it as a single file into
+IS.
